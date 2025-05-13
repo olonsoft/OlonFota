@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 
 #ifdef ESP8266
   #include <ESP8266httpUpdate.h>
@@ -18,8 +19,8 @@ enum class FOTAEvent_t {
 
 class FOTA {
  public:
-  typedef std::function<void(FOTAEvent_t, char*)> FOTAEventCb;
-  typedef std::function<void(int, int)> FOTAProgressEventCb;
+  using FOTAEventCb = std::function<void(FOTAEvent_t, char*)>;
+  using FOTAProgressEventCb= std::function<void(int, int)>;
   FOTA();
   void   init();
   bool   updateFirmware(String bin_url);
